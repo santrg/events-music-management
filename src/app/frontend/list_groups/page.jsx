@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import GroupCard from '@/app/components/GroupCard'
 
 
+
 export default function ListGroups() {
 
   const router = useRouter()
@@ -32,6 +33,7 @@ export default function ListGroups() {
       <div>
         <button onClick={handleClick} className="flex bg-blue-500 p-2 w-full" type="button" >Nuevo Grupo</button> 
       </div>
+      
     </div>
   )
 }

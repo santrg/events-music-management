@@ -18,7 +18,6 @@ export default function NewGroup() {
         cast
       })
     }) 
-    console.log(res)
     location.reload()
   }
  
