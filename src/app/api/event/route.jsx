@@ -8,10 +8,22 @@ export async function GET() {
 
 
 export async function POST(request) {
+ try{
     const data = await request.json()
     console.log(data)
     const res = await conn.query("INSERT INTO events SET ?", data)
-  return NextResponse.json("Nueva evento de entrada ")
+    return NextResponse.json("Nueva evento de entrada ")
+ }
+  catch(eror){
+    console.log(error)
+    return NextResponse.json(
+      {
+        message : error.message,
+      },
+      {
+          status : 500,
+      })
+  }
 }
 
 

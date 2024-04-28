@@ -57,7 +57,7 @@ function NewEvent() {
       </div>
       <div className="flex justify-center my-10">      
         <div>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className="bg-slate-400 p-2">
             <label htmlFor="date_event">Fecha del Evento</label>
             <input
               className="text-black my-1 rounded-md px-2"

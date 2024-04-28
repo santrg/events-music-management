@@ -58,7 +58,7 @@ function UpdateEvent({ params }) {
       setIsLoading(false);
     };
     myFn();
-    console.log(id_group);
+    console.log("id_group",id_group);
   }, []);
 
   async function handleSubmit(e) {
@@ -110,7 +110,7 @@ function UpdateEvent({ params }) {
       </div>
       <div className="flex justify-center my-8">
         <div>
-          <form onSubmit={handleSubmit} className="bg-slate-600 p-4">
+          <form onSubmit={handleSubmit} className="bg-slate-400 p-4">
             <label htmlFor="date_event">Fecha del Evento</label>
             <input
               value={date_event}

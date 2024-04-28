@@ -3,9 +3,23 @@ import {conn} from '../../../../libs/mysql'
 
 
 export async function GET(request, {params}) {
-  const res = await conn.query("SELECT * FROM events WHERE id = ?", params.idEvent )
-  //const data = await res.json()
-  return NextResponse.json(res)
+  
+  try{
+    const res = await conn.query("SELECT * FROM events WHERE id = ?", params.idEvent )
+    //const data = await res.json()
+    return NextResponse.json(res)
+  }
+  catch(eror){
+    console.log(error)
+    return NextResponse.json(
+      {
+        message : error.message,
+      },
+      {
+          status : 500,
+      })
+  }
+  
 }
 
 export async function DELETE(request, {params}) {

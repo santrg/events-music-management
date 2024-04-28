@@ -1,10 +1,13 @@
 "use client"
 import { useEffect, useState } from "react"
 import {useRouter} from 'next/navigation'
+import { FaRegEdit } from "react-icons/fa";
+import { MdOutlineDelete } from "react-icons/md";
+
 
 
 export default function EventCard(event) {
-  const [group, setGroup] = useState("")
+  const [group, setGroup] = useState("") 
   const router = useRouter()
 
   function FormatDate(string){
@@ -20,39 +23,39 @@ export default function EventCard(event) {
         method : "GET"
       })
       const data = await res.json()
-
       setGroup(data[0].name)
+      
     }
     myFn()
   },[])
 
   async function handleDelete(data){
-        
+    console.log(data.target.value)    
     const res = await fetch(`../api/event/${data.target.value}`,{
       method: "DELETE"
     })
-    //router.refresh()
+
     location.reload()
-    //router.push("../frontend/list_events")
+
   }
   async function handleUpdate(data){
-    router.push(`../frontend/new_event/${data.target.value}`)
-    //console.log(data.target.value)
-    //const res = await fetch(`../api/event/${id}`)
+    router.push(`../frontend/new_event/${data.target.value}`)    
   }
 
   return (
-    <div className="flex grid grid-cols-8 bg-slate-700  my-2">      
-        <h1 className="font-bold p-1 mx-2">{FormatDate(event.value.date_event)}</h1>        
-        <h1 className="font-bold p-1 mx-2">{group}</h1>        
-        <h3 className="font-bold p-1 mx-2">{event.value.place}</h3>
-        <h3 className="font-bold p-1 mx-2">{event.value.price}</h3>
-        <h3 className="text-yellow-400 font-bold p-1 mx-2">{(event.value.reserved===1) ? ("RESERVA") : ("")}</h3>
-        <h3 className="text-red-600 font-bold p-1 mx-2">{(event.value.cancelled===1) ? ("CANCELADO") : ("")}</h3>
-        <p className="font-bold p-1 mx-2">{event.value.notes}</p>
-        <div>
-          <button onClick={handleDelete} value={event.value.id} type="button" className="bg-red-500 w-1/3 p-2 rounded-md">Eliminar</button>
-          <button onClick={handleUpdate} value={event.value.id} type="button" className="bg-blue-500 w-1/3 p-2 rounded-md m-2">Editar</button>
+    <div className="flex grid grid-cols-10 bg-slate-700  my-2">      
+        <h1 className=" p-1 ">{FormatDate(event.value.date_event)}</h1>        
+        <h1 className="col-span-2 p-1 mx-2">{group}</h1>        
+        <h3 className="col-span-2 p-1 ">{event.value.place}</h3>
+        <h3 className="col-span-1 p-1 ">{event.value.price}</h3>
+        <div className="col-span-1">
+          <h3 className=" text-yellow-400  ">{(event.value.reserved===1) ? ("RES") : ("")}</h3>
+          <h3 className=" text-red-600   ">{(event.value.cancelled===1) ? ("CAN") : ("")}</h3>
+        </div>
+        <p className="col-span-2 p-1 ">{event.value.notes}</p>
+        <div className="col-span-1">
+          <button onClick={handleDelete} value={event.value.id} type="button" className="bg-red-500 w-1/3 p-1 rounded-md"><MdOutlineDelete />_</button>
+          <button onClick={handleUpdate} value={event.value.id} type="button" className="bg-blue-500 w-1/3 p-1  rounded-md m-2 "> <FaRegEdit />_</button>
         </div>
     </div>
   )

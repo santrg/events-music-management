@@ -18,4 +18,17 @@ form {
   row-gap: 0,5rem;
   color: black;
 
+} 
+
+.rbc-day-bg{
+  background-color: darkolivegreen;
+  
+}
+.rbc-day-bg.rbc-today{
+
+  background-color: rgb(15, 114, 114);
+}
+
+.rbc-btn-group{
+  background-color: dimgray;
 }
